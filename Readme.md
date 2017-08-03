@@ -1,7 +1,3 @@
 Conan package for GRPC
 
-the Google provided RPC framework.
-
---------------------------------------------
-
-Package here: https://www.conan.io/ (search for gRPC)
+Forked and changed for grpc 1.4.2.
