@@ -5,11 +5,11 @@ import shutil
 
 class gRPCConan(ConanFile):
     name = "gRPC"
-    version = "1.1.0-dev" # Nov 8
-    folder = "grpc-31606bdb34474d8728350ad45baf0e91b590b041"
-    description = "Googles RPC framework in use by the Inexor game."
-    url = "https://github.com/inexor-game/conan-grpc.git"
-    license = "BSD-3Clause"
+    version = "1.4.2" # 2017.7
+    folder = "grpc-" + version
+    description = "Googles RPC framework."
+    url = "https://github.com/jinq0123/conan-grpc.git"
+    license = "Apache-2.0"  # grpc license
     requires = "zlib/1.2.11@lasote/stable", "OpenSSL/1.0.2k@lasote/stable", "Protobuf/3.1.0@inexorgame/stable"
     settings = "os", "compiler", "build_type", "arch"
     options = {
@@ -25,9 +25,10 @@ class gRPCConan(ConanFile):
     short_paths = True # Otherwise some folders go out of the 260 chars path length scope rapidly (on windows)
 
     def source(self):
-        tools.download("https://github.com/grpc/grpc/archive/31606bdb34474d8728350ad45baf0e91b590b041.zip", "grpc.zip")
-        tools.unzip("grpc.zip")
-        os.unlink("grpc.zip")
+        grpc_zip = "grpc.tar.gz"
+        tools.download("https://github.com/grpc/grpc/archive/v1.4.2.tar.gz", grpc_zip)
+        tools.unzip(grpc_zip)
+        os.unlink(grpc_zip)
         cmake_name = "{}/CMakeLists.txt".format(self.folder)
 
         # tell grpc to use our deps and flags

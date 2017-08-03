@@ -5,8 +5,8 @@ environment:
     PYTHON_ARCH: "32"
 
     CONAN_UPLOAD: 1
-    CONAN_REFERENCE: "gRPC/1.1.0-dev"
-    CONAN_USERNAME: "inexorgame"
+    CONAN_REFERENCE: "gRPC/1.4.2"
+    CONAN_USERNAME: "jinq0123"
     CONAN_CHANNEL: "stable"
     CONAN_TOTAL_PAGES: 16
 
