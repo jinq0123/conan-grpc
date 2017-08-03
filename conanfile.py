@@ -99,8 +99,8 @@ endif(CONAN_ADDITIONAL_PLUGINS)''')
     def package(self):
         cmake_folder = "{}/cmake/gRPC".format(self.get_install_lib_path())
         cmake_files = ["gRPCConfig.cmake", "gRPCConfigVersion.cmake", "gRPCTargets.cmake"]
-        for file in cmake_files:
-            self.copy(file, dst='.', src=cmake_folder)
+        for f in cmake_files:
+            self.copy(f, dst='.', src=cmake_folder)
           # Copy the build_type specific file only for our used one:
         self.copy("gRPCTargets-{}.cmake".format("debug" if self.settings.build_type == "Debug" else "release"), dst=".", src=cmake_folder)
 
