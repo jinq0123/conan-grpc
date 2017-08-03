@@ -8,8 +8,9 @@ if (MSVC)
   add_definitions(/MP)
 endif (MSVC)
 
-# cmake installation doesn't generate targets file #10759
+# gRPC cmake installation doesn't generate targets file #10759
 # find_package(gRPC REQUIRED)
+find_package(Protobuf REQUIRED)
 
 find_program(GRPC_GRPC_CPP_PLUGIN grpc_cpp_plugin PATHS ${CONAN_BIN_DIRS_GRPC} NO_SYSTEM_ENVIRONMENT_PATH NO_CMAKE_SYSTEM_PATH )
 function(GRPC_GENERATE_CPP SRCS HDRS)
@@ -78,7 +79,7 @@ endif()
 
 include_directories(${Protobuf_INCLUDE_DIRS} ${CMAKE_CURRENT_BINARY_DIR}) # CMAKE_CURRENT_BINARY_DIR is where our generated files are (.pb.hpp)
 add_executable(greeter_client greeter_client.cc ${SRC_FILE} ${HEADER_FILE} ${GRPC_SRC_FILE} ${GRPC_HEADER_FILE})
-if(NOT TARGET protobuf::libprotobuf)
-    message(FATAL_ERROR "WE DIDN'T FIND LIBPROTOBUFS IMPORT TARGET (Protobuf_LIBRARIES = ${Protobuf_LIBRARIES})")
-endif()
+# if(NOT TARGET protobuf::libprotobuf)
+#     message(FATAL_ERROR "WE DIDN'T FIND LIBPROTOBUFS IMPORT TARGET (Protobuf_LIBRARIES = ${Protobuf_LIBRARIES})")
+# endif()
 target_link_libraries(greeter_client ${CONAN_LIBS}) # This is still faulty: protobuf::libprotobuf gRPC::grpc++ gRPC::grpc does not work (neither with gRPC::gpr OpenSSL::SSL added)
