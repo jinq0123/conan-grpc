@@ -8,7 +8,8 @@ if (MSVC)
   add_definitions(/MP)
 endif (MSVC)
 
-find_package(gRPC REQUIRED)
+# cmake installation doesn't generate targets file #10759
+# find_package(gRPC REQUIRED)
 
 find_program(GRPC_GRPC_CPP_PLUGIN grpc_cpp_plugin PATHS ${CONAN_BIN_DIRS_GRPC} NO_SYSTEM_ENVIRONMENT_PATH NO_CMAKE_SYSTEM_PATH )
 function(GRPC_GENERATE_CPP SRCS HDRS)
