@@ -8,7 +8,7 @@ class gRPCConan(ConanFile):
     description = "Googles RPC framework."
     url = "https://github.com/jinq0123/conan-grpc.git"
     license = "Apache-2.0"  # grpc license
-    requires = "zlib/1.2.11@lasote/stable", "OpenSSL/1.0.2k@lasote/stable", "Protobuf/3.1.0@inexorgame/stable"
+    requires = "zlib/1.2.11@conan/stable", "OpenSSL/1.0.2l@conan/stable", "Protobuf/3.1.0@inexorgame/stable"
     settings = "os", "compiler", "build_type", "arch"
     options = {
             "shared": [True, False],
