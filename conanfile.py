@@ -39,12 +39,6 @@ class gRPCConan(ConanFile):
         include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
         conan_basic_setup()''')
         tools.replace_in_file(cmake_name, "\"module\" CACHE STRING ", '''\"package\" CACHE STRING ''') # tell grpc to use the find_package version
-        # skip installing the headers, TODO: use these!
-        tools.replace_in_file(cmake_name, '''  install(FILES ${_hdr}
-    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${_path}"
-  )''', '''  # install(FILES ${_hdr} # COMMENTED BY CONAN
-    # DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${_path}"
-  # )''')
 
         # Add some CMake Variables (effectively commenting out stuff we do not support)
         tools.replace_in_file(cmake_name, "add_library(grpc_cronet", '''if(CONAN_ENABLE_MOBILE)
@@ -67,15 +61,17 @@ class gRPCConan(ConanFile):
         add_executable(grpc_cpp_plugin''')
         tools.replace_in_file(cmake_name, "add_executable(grpc_csharp_plugin", '''if(CONAN_ADDITIONAL_PLUGINS)
         add_executable(grpc_csharp_plugin''')
-        tools.replace_in_file(cmake_name, '''install(TARGETS grpc_ruby_plugin EXPORT gRPCTargets
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        tools.replace_in_file(cmake_name,
+'''install(TARGETS grpc_ruby_plugin EXPORT gRPCTargets
+    RUNTIME DESTINATION ${gRPC_INSTALL_BINDIR}
+    LIBRARY DESTINATION ${gRPC_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${gRPC_INSTALL_LIBDIR}
   )
-endif()''', '''install(TARGETS grpc_ruby_plugin EXPORT gRPCTargets
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+endif()''',
+'''install(TARGETS grpc_ruby_plugin EXPORT gRPCTargets
+    RUNTIME DESTINATION ${gRPC_INSTALL_BINDIR}
+    LIBRARY DESTINATION ${gRPC_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${gRPC_INSTALL_LIBDIR}
   )
 endif()
 endif(CONAN_ADDITIONAL_PLUGINS)''')
