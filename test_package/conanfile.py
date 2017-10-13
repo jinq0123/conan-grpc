@@ -1,13 +1,8 @@
 from conans import ConanFile, CMake
 import os
 
-channel = os.getenv("CONAN_CHANNEL", "testing")
-username = os.getenv("CONAN_USERNAME", "jinq0123")
-package_ref = os.getenv("CONAN_REFERENCE", "gRPC/1.6.6")
-
 class gRPCTestConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
-    requires = "{}@{}/{}".format(package_ref, username, channel)
     generators = "cmake"
 
     def build(self):
