@@ -27,8 +27,9 @@ class gRPCConan(ConanFile):
     short_paths = True # Otherwise some folders go out of the 260 chars path length scope rapidly (on windows)
 
     def source(self):
+        url = "https://github.com/grpc/grpc/archive/v%s.tar.gz" % self.version
         grpc_zip = "grpc.tar.gz"
-        tools.download("https://github.com/grpc/grpc/archive/v1.4.2.tar.gz", grpc_zip)
+        tools.download(url, grpc_zip)
         tools.unzip(grpc_zip)
         os.unlink(grpc_zip)
         cmake_name = "{}/CMakeLists.txt".format(self.folder)
