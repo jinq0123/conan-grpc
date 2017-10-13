@@ -3,7 +3,7 @@ import os
 
 class gRPCConan(ConanFile):
     name = "gRPC"
-    version = "1.4.2" # 2017.7
+    version = "1.6.6" # 2017.10
     folder = "grpc-" + version
     description = "Googles RPC framework."
     url = "https://github.com/jinq0123/conan-grpc.git"
@@ -11,7 +11,7 @@ class gRPCConan(ConanFile):
     requires = ("zlib/1.2.11@conan/stable",
         "OpenSSL/1.0.2l@conan/stable",
         # Please: conan add remote jinq0123 https://api.bintray.com/conan/jinq0123/test
-        "Protobuf/3.1.0@jinq0123/stable")  # Added libprotoc.
+        "Protobuf/3.4.1@jinq0123/testing")  # Added libprotoc.
         #"Protobuf/3.1.0@inexorgame/stable")
     settings = "os", "compiler", "build_type", "arch"
     options = {
