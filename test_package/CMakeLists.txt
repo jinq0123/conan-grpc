@@ -10,7 +10,7 @@ endif (MSVC)
 
 # gRPC cmake installation doesn't generate targets file #10759
 # find_package(gRPC REQUIRED)
-find_package(Protobuf REQUIRED)
+find_package(Protobuf REQUIRED CONFIG)
 
 find_program(GRPC_GRPC_CPP_PLUGIN grpc_cpp_plugin PATHS ${CONAN_BIN_DIRS_GRPC} NO_SYSTEM_ENVIRONMENT_PATH NO_CMAKE_SYSTEM_PATH )
 function(GRPC_GENERATE_CPP SRCS HDRS)

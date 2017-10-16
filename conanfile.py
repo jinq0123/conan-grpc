@@ -39,6 +39,10 @@ class gRPCConan(ConanFile):
         include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
         conan_basic_setup()''')
         tools.replace_in_file(cmake_name, "\"module\" CACHE STRING ", '''\"package\" CACHE STRING ''') # tell grpc to use the find_package version
+        # to switch to Config mode find_package(Protobuf ${gRPC_PROTOBUF_PACKAGE_TYPE})
+        tools.replace_in_file(cmake_name,
+            'set(gRPC_PROTOBUF_PACKAGE_TYPE "" CACHE STRING',
+            'set(gRPC_PROTOBUF_PACKAGE_TYPE "CONFIG" CACHE STRING')
 
         # Add some CMake Variables (effectively commenting out stuff we do not support)
         tools.replace_in_file(cmake_name, "add_library(grpc_cronet", '''if(CONAN_ENABLE_MOBILE)
