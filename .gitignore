@@ -55,5 +55,7 @@ docs/_build/
 
 # PyBuilder
 target/
+
+.ropeproject
 /conanbuildinfo.cmake
 /conaninfo.txt
